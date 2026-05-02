@@ -1,0 +1,927 @@
+<!doctype html>
+<html lang="vi" class="h-full">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IELTS Writing Task 1A – DATA</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" integrity="sha512-b7EGarfEMO/UynomVcF7Jj+rF7xqk3h7QC28rfs7QbQy3kJ2kZhtYAKiyCXbV7X5QwW4dmqdvqc2xYfZX0x1WQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700;800;900&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
+  <script>
+tailwind.config = {
+  theme: {
+    extend: {
+      fontFamily: {
+        main: ['Be Vietnam Pro', 'sans-serif'],
+        mono: ['JetBrains Mono', 'monospace']
+      }
+    }
+  }
+}
+</script>
+  <style>
+html, body { height: 100%; margin: 0; }
+.app-root { height: 100%; overflow: auto; }
+.struct-tag { display: inline-block; padding: 2px 8px; border-radius: 6px; font-size: 11px; font-weight: 700; font-family: 'JetBrains Mono', monospace; letter-spacing: 0.5px; }
+.s1 { background: #fee2e2; color: #dc2626; }
+.s2 { background: #fef3c7; color: #d97706; }
+.s3 { background: #d1fae5; color: #059669; }
+.s4 { background: #dbeafe; color: #2563eb; }
+.s5 { background: #ede9fe; color: #7c3aed; }
+.s6 { background: #fce7f3; color: #db2777; }
+.hl { background: linear-gradient(120deg, #fbbf2440 0%, #f59e0b40 100%); padding: 1px 4px; border-radius: 3px; font-weight: 600; }
+.fade-in { animation: fadeIn 0.4s ease; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes pulse-glow { 0%, 100% { box-shadow: 0 0 0 0 rgba(251, 146, 60, 0.3); } 50% { box-shadow: 0 0 20px 4px rgba(251, 146, 60, 0.15); } }
+.nav-btn.active { background: #1e293b; color: #fb923c; box-shadow: inset 0 -3px 0 #fb923c; }
+.quiz-opt { transition: all 0.2s; cursor: pointer; }
+.quiz-opt:hover:not(.locked) { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
+.quiz-opt.correct { background: #d1fae5 !important; border-color: #059669 !important; }
+.quiz-opt.wrong { background: #fee2e2 !important; border-color: #dc2626 !important; }
+.quiz-opt.locked { cursor: default; opacity: 0.7; }
+.quiz-opt.locked.correct { opacity: 1; }
+.blank-input { border-bottom: 2px dashed #94a3b8; background: transparent; outline: none; font-weight: 600; color: #1e293b; min-width: 80px; text-align: center; transition: border-color 0.2s; }
+.blank-input:focus { border-color: #fb923c; }
+.blank-input.correct-input { border-color: #059669; color: #059669; }
+.blank-input.wrong-input { border-color: #dc2626; color: #dc2626; }
+.tab-section { display: none; }
+.tab-section.visible { display: block; }
+.expand-content { max-height: 0; overflow: hidden; transition: max-height 0.5s ease; }
+.expand-content.open { max-height: 8000px; }
+.sent-card { border-left: 4px solid; }
+.sent-card.s1-border { border-color: #dc2626; }
+.sent-card.s2-border { border-color: #d97706; }
+.sent-card.s3-border { border-color: #059669; }
+.sent-card.s4-border { border-color: #2563eb; }
+.sent-card.s5-border { border-color: #7c3aed; }
+.sent-card.s6-border { border-color: #db2777; }
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #0f172a; }
+::-webkit-scrollbar-thumb { background: #334155; border-radius: 3px; }
+.fireworks-burst { position: fixed; pointer-events: none; }
+.fireworks-particle { position: absolute; width: 8px; height: 8px; border-radius: 50%; animation: burst-anim 0.8s ease-out forwards; }
+@keyframes burst-anim { 0% { opacity: 1; transform: translate(0, 0) scale(1); } 100% { opacity: 0; transform: translate(var(--tx), var(--ty)) scale(0); } }
+@keyframes pulse-correct { 0% { transform: scale(1); } 50% { transform: scale(1.05); background: #d1fae5; } 100% { transform: scale(1); } }
+.rewrite-correct { animation: pulse-correct 0.6s ease; }
+.rewrite-card { transition: all 0.3s ease; }
+.rewrite-textarea { border-left: 4px solid #fb923c; }
+
+</style>
+  <style>body { box-sizing: border-box; }</style>
+ </head>
+ <body class="h-full font-main bg-slate-950 text-slate-200">
+  <div class="app-root" id="app">
+   <!-- HEADER -->
+   <header class="sticky top-0 z-50 bg-slate-900/95 backdrop-blur border-b border-slate-800">
+    <div class="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between">
+     <div>
+      <h1 id="mainTitle" class="text-lg sm:text-xl font-black text-orange-400 tracking-tight">🔥 WRITING TASK 1A – DATA</h1>
+      <p class="text-xs text-slate-500 mt-0.5">Master 6 sentence structures for IELTS Band 7+</p>
+     </div>
+     <div id="scoreDisplay" class="text-right">
+      <div class="text-xs text-slate-500">
+       Điểm
+      </div>
+      <div class="text-xl font-bold text-orange-400" id="totalScore">
+       0
+      </div>
+     </div>
+    </div><!-- NAV -->
+    <nav class="max-w-5xl mx-auto px-4 flex gap-1 pb-2 overflow-x-auto" id="navBar">
+     <button class="nav-btn active px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-800 text-slate-400 whitespace-nowrap" data-tab="theory" onclick="switchTab('theory')">📚 Lý thuyết</button> <button class="nav-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-800 text-slate-400 whitespace-nowrap" data-tab="mc" onclick="switchTab('mc')">🎯 Trắc nghiệm</button> <button class="nav-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-800 text-slate-400 whitespace-nowrap" data-tab="fill" onclick="switchTab('fill')">✏️ Điền từ</button> <button class="nav-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-800 text-slate-400 whitespace-nowrap" data-tab="apply" onclick="switchTab('apply')">🚀 Áp dụng</button>
+    </nav>
+   </header><!-- MAIN CONTENT -->
+   <main class="max-w-5xl mx-auto px-4 py-6 pb-24">
+    <!-- ==================== PHẦN 1: LÝ THUYẾT ==================== -->
+    <section id="tab-theory" class="tab-section visible fade-in">
+     <!-- INTRO -->
+     <div class="bg-slate-900 rounded-2xl p-5 mb-5 border border-slate-800">
+      <h2 class="text-base font-bold text-orange-400 mb-3">I. INTRODUCTION – Paraphrase đề bài</h2>
+      <div class="bg-slate-800/50 rounded-xl p-4 mb-3 text-sm">
+       <p class="text-slate-400 mb-2">📝 <strong>Đề gốc:</strong></p>
+       <p class="italic text-slate-300 mb-3">"The graph below shows CO₂ emissions in S, I, P, the UK from 1997 to 2007."</p>
+       <p class="text-orange-300 font-semibold mb-1">➜ Paraphrase:</p>
+       <div class="space-y-1 text-slate-300 text-sm">
+        <p>• <span class="hl">The chart</span> below (= The graph)</p>
+        <p>• <span class="hl">provides information about / illustrates / demonstrates</span> (= shows)</p>
+        <p>• <span class="hl">the emissions of CO₂</span> (AB → the B of A)</p>
+        <p>• in <span class="hl">four different countries</span></p>
+        <p>• <span class="hl">over the course of 10 years, starting from 1997</span></p>
+       </div>
+      </div>
+      <div class="bg-orange-950/30 border border-orange-900/50 rounded-xl p-4 text-sm">
+       <p class="text-orange-300 font-semibold mb-2">💡 Quy tắc quan trọng:</p>
+       <div class="space-y-2 text-slate-300">
+        <p>• <strong>The amount of</strong> + N không đếm được + P2/Ving = <strong>How much</strong> + S + was P2/V</p>
+        <p>• <strong>The number of</strong> + N đếm được (số nhiều) + P2/Ving = <strong>How many</strong> + S + were P2/V</p>
+       </div>
+      </div>
+     </div><!-- OVERVIEW -->
+     <div class="bg-slate-900 rounded-2xl p-5 mb-5 border border-slate-800">
+      <h2 class="text-base font-bold text-orange-400 mb-3">II. OVERVIEW – Xu hướng &amp; Thứ tự</h2>
+      <div class="grid sm:grid-cols-2 gap-3">
+       <div class="bg-slate-800/50 rounded-xl p-4">
+        <p class="text-xs font-bold text-emerald-400 mb-2">① TREND (Xu hướng)</p>
+        <p class="text-sm text-slate-300">Overall, … <span class="hl">increased</span>, whereas … witnessed <span class="hl">fall(s)</span>.</p>
+       </div>
+       <div class="bg-slate-800/50 rounded-xl p-4">
+        <p class="text-xs font-bold text-sky-400 mb-2">② ORDER (Thứ tự cao nhất)</p>
+        <p class="text-sm text-slate-300">Despite this, TÊN <span class="hl">registered / recorded / had the highest figures</span> throughout the given period, which <span class="hl">peaked in + năm</span>.</p>
+       </div>
+      </div>
+     </div><!-- 6 CẤU TRÚC -->
+     <div class="bg-slate-900 rounded-2xl p-5 border border-slate-800">
+      <h2 class="text-base font-bold text-orange-400 mb-4">III. 6 CẤU TRÚC MÔ TẢ SỐ LIỆU 🏗️</h2>
+      <div class="space-y-3" id="structureCards">
+      </div>
+     </div>
+    </section><!-- ==================== PHẦN 2A: TRẮC NGHIỆM ==================== -->
+    <section id="tab-mc" class="tab-section fade-in">
+     <div class="flex items-center justify-between mb-4">
+      <h2 class="text-base font-bold text-orange-400">🎯 TRẮC NGHIỆM – Multiple Choice</h2><button onclick="resetMC()" class="text-xs bg-slate-800 hover:bg-slate-700 px-3 py-1.5 rounded-lg text-slate-400 flex items-center gap-1"><i data-lucide="refresh-cw" style="width:12px;height:12px"></i> Làm lại</button>
+     </div>
+     <div id="mcContainer" class="space-y-4"></div>
+     <div id="mcResult" class="mt-5 hidden bg-slate-900 rounded-2xl p-5 border border-slate-800 text-center">
+      <p class="text-2xl font-black text-orange-400" id="mcScore"></p>
+      <p class="text-sm text-slate-400 mt-1" id="mcMsg"></p>
+     </div>
+    </section><!-- ==================== PHẦN 2B: ĐIỀN TỪ ==================== -->
+    <section id="tab-fill" class="tab-section fade-in">
+     <div class="flex items-center justify-between mb-4">
+      <h2 class="text-base font-bold text-orange-400">✏️ ĐIỀN TỪ – Fill in the Blank</h2><button onclick="resetFill()" class="text-xs bg-slate-800 hover:bg-slate-700 px-3 py-1.5 rounded-lg text-slate-400 flex items-center gap-1"><i data-lucide="refresh-cw" style="width:12px;height:12px"></i> Làm lại</button>
+     </div>
+     <div id="fillContainer" class="space-y-4"></div>
+     <div class="text-center mt-5">
+      <button id="fillCheckBtn" class="bg-orange-500 hover:bg-orange-600 text-white font-bold px-6 py-2.5 rounded-xl text-sm transition">Kiểm tra tất cả</button>
+     </div>
+     <div id="fillResult" class="mt-5 hidden bg-slate-900 rounded-2xl p-5 border border-slate-800 text-center">
+      <p class="text-2xl font-black text-orange-400" id="fillScore"></p>
+      <p class="text-sm text-slate-400 mt-1" id="fillMsg"></p>
+     </div>
+    </section><!-- ==================== PHẦN 3: ÁP DỤNG - REWRITE GAME ==================== -->
+    <section id="tab-apply" class="tab-section fade-in">
+     <div class="flex items-center justify-between mb-4">
+      <h2 class="text-base font-bold text-orange-400">🚀 BÀI TẬP VIẾT LẠI - Rewrite Game</h2><button onclick="resetRewrite()" class="text-xs bg-slate-800 hover:bg-slate-700 px-3 py-1.5 rounded-lg text-slate-400 flex items-center gap-1"> <i data-lucide="refresh-cw" style="width:12px;height:12px"></i> Làm lại </button>
+     </div>
+     <p class="text-sm text-slate-400 mb-4">📝 Viết lại mỗi câu thành 6 cách khác nhau ứng với 6 cấu trúc 👇</p>
+     <div id="rewriteContainer" class="space-y-6"></div><!-- TÓM TẮT -->
+     <div class="mt-8 bg-gradient-to-br from-orange-950/40 to-slate-900 rounded-2xl p-5 border border-orange-900/40">
+      <h3 class="text-base font-bold text-orange-400 mb-3">📋 TÓM TẮT NHANH 6 CẤU TRÚC</h3>
+      <div class="space-y-2 text-sm" id="summaryStructures"></div>
+     </div>
+    </section>
+   </main>
+  </div>
+  <script>
+// ===================== DATA =====================
+
+const structures = [
+  { id: 1, cls: 's1', label: 'CẤU TRÚC 1', formula: 'S + ADV + V from Số to Số + between năm and năm.', example: 'CO₂ emissions <strong>dramatically increased</strong> from 5 million to 12 million tonnes between 1997 and 2007.', note: 'Dùng khi muốn nhấn mạnh điểm đầu → điểm cuối + khoảng thời gian.' },
+  { id: 2, cls: 's2', label: 'CẤU TRÚC 2', formula: 'S + ADV + V by Số chênh lệch, reaching Số cuối + in năm.', example: 'The figure for Sweden <strong>significantly rose</strong> by 7 million, reaching 12 million tonnes in 2007.', note: 'Dùng khi nhấn mạnh mức chênh lệch và kết quả cuối cùng.' },
+  { id: 3, cls: 's3', label: 'CẤU TRÚC 3', formula: 'A/AN ADJ + N OF Số chênh lệch was seen IN + S, reaching Số in năm.', example: 'A significant increase of 7 million tonnes <strong>was seen</strong> in CO₂ emissions in Sweden, reaching 12 million in 2007.', note: 'Câu bị động – danh từ hóa xu hướng. Học thuật, formal.' },
+  { id: 4, cls: 's4', label: 'CẤU TRÚC 4', formula: 'There was A/AN ADJ + N OF Số chênh lệch IN + S, reaching Số + in năm.', example: '<strong>There was</strong> a dramatic rise of 7 million tonnes in the emissions of CO₂ in Sweden, reaching 12 million in 2007.', note: 'Dạng "There was…" – rất phổ biến trong Task 1, dễ viết.' },
+  { id: 5, cls: 's5', label: 'CẤU TRÚC 5', formula: 'Time + witnessed/saw + A/AN ADJ + N OF Số chênh lệch IN + S.', example: 'The period between 1997 and 2007 <strong>witnessed</strong> a sharp increase of 7 million in CO₂ emissions in Sweden.', note: 'Chủ ngữ là thời gian – tạo sự đa dạng câu.' },
+  { id: 6, cls: 's6', label: 'CẤU TRÚC 6', formula: 'Subject + witnessed/saw + A/AN ADJ + N OF Số chênh lệch IN + Object.', example: 'Sweden <strong>witnessed</strong> a significant rise of 7 million in its CO₂ emissions over the given period.', note: 'Chủ ngữ là đối tượng (quốc gia, nhóm…) – nổi bật chủ thể.' }
+];
+
+// MC questions – one per structure
+const mcQuestions = [
+  {
+    struct: 1,
+    question: 'Câu nào đúng <strong>Cấu trúc 1</strong>: S + ADV + V <em>from … to … between … and …</em>?',
+    options: [
+      'The number of tourists significantly increased from 2 million to 5 million between 2000 and 2010.',
+      'The number of tourists significantly increased by 3 million, reaching 5 million in 2010.',
+      'A significant increase of 3 million was seen in the number of tourists, reaching 5 million in 2010.',
+      'There was a significant increase of 3 million in the number of tourists, reaching 5 million in 2010.'
+    ],
+    answer: 0,
+    explanations: [
+      '✅ Đúng! Có đủ: S + ADV (significantly) + V (increased) + from … to … + between … and …',
+      '❌ Sai. Đây là Cấu trúc 2 (V by + chênh lệch, reaching…).',
+      '❌ Sai. Đây là Cấu trúc 3 (A/AN ADJ + N … was seen IN…).',
+      '❌ Sai. Đây là Cấu trúc 4 (There was…).'
+    ]
+  },
+  {
+    struct: 2,
+    question: 'Câu nào đúng <strong>Cấu trúc 2</strong>: S + ADV + V <em>by Số, reaching Số in năm</em>?',
+    options: [
+      'Electricity consumption rose dramatically from 100 to 250 units between 1990 and 2000.',
+      'A dramatic rise of 150 units was seen in electricity consumption, reaching 250 in 2000.',
+      'Electricity consumption dramatically rose by 150 units, reaching 250 in 2000.',
+      'The decade witnessed a dramatic rise of 150 units in electricity consumption.'
+    ],
+    answer: 2,
+    explanations: [
+      '❌ Sai. Đây là Cấu trúc 1 (from … to … between …).',
+      '❌ Sai. Đây là Cấu trúc 3 (… was seen IN …).',
+      '✅ Đúng! S + ADV (dramatically) + V (rose) + by 150 + reaching 250 in 2000.',
+      '❌ Sai. Đây là Cấu trúc 5 (Time + witnessed …).'
+    ]
+  },
+  {
+    struct: 3,
+    question: 'Câu nào đúng <strong>Cấu trúc 3</strong>: A/AN ADJ + N … <em>was seen IN + S</em>?',
+    options: [
+      'There was a gradual decline of 15% in unemployment rates, reaching 5% in 2015.',
+      'A gradual decline of 15% was seen in unemployment rates, reaching 5% in 2015.',
+      'Unemployment rates gradually declined from 20% to 5% between 2005 and 2015.',
+      'The country saw a gradual decline of 15% in unemployment rates.'
+    ],
+    answer: 1,
+    explanations: [
+      '❌ Sai. Đây là Cấu trúc 4 (There was …).',
+      '✅ Đúng! A gradual decline of 15% + was seen IN + unemployment rates + reaching…',
+      '❌ Sai. Đây là Cấu trúc 1 (from … to … between …).',
+      '❌ Sai. Đây là Cấu trúc 6 (Subject + saw …).'
+    ]
+  },
+  {
+    struct: 4,
+    question: 'Câu nào đúng <strong>Cấu trúc 4</strong>: <em>There was</em> A/AN ADJ + N OF … IN + S?',
+    options: [
+      'The period from 2000 to 2010 witnessed a steady growth of $2 billion in exports.',
+      'Exports steadily grew by $2 billion, reaching $5 billion in 2010.',
+      'Exports steadily grew from $3 billion to $5 billion between 2000 and 2010.',
+      'There was a steady growth of $2 billion in exports, reaching $5 billion in 2010.'
+    ],
+    answer: 3,
+    explanations: [
+      '❌ Sai. Đây là Cấu trúc 5 (Time + witnessed …).',
+      '❌ Sai. Đây là Cấu trúc 2 (V by … reaching …).',
+      '❌ Sai. Đây là Cấu trúc 1 (from … to … between …).',
+      '✅ Đúng! There was + a steady growth of $2B + IN exports + reaching…'
+    ]
+  },
+  {
+    struct: 5,
+    question: 'Câu nào đúng <strong>Cấu trúc 5</strong>: <em>Time + witnessed/saw</em> + A/AN ADJ + N?',
+    options: [
+      'Japan witnessed a rapid increase of 30% in internet usage.',
+      'The period between 2005 and 2015 saw a rapid increase of 30% in internet usage.',
+      'A rapid increase of 30% was seen in internet usage, reaching 80% in 2015.',
+      'There was a rapid increase of 30% in internet usage, reaching 80% in 2015.'
+    ],
+    answer: 1,
+    explanations: [
+      '❌ Sai. Đây là Cấu trúc 6 (Subject [Japan] + witnessed …).',
+      '✅ Đúng! Time (The period between 2005 and 2015) + saw + a rapid increase of 30% IN internet usage.',
+      '❌ Sai. Đây là Cấu trúc 3 (… was seen IN …).',
+      '❌ Sai. Đây là Cấu trúc 4 (There was …).'
+    ]
+  },
+  {
+    struct: 6,
+    question: 'Câu nào đúng <strong>Cấu trúc 6</strong>: <em>Subject + witnessed/saw</em> + N OF … IN + Object?',
+    options: [
+      'The 1990s witnessed a notable drop of 10% in crime rates.',
+      'Crime rates notably dropped from 25% to 15% between 1990 and 2000.',
+      'Australia saw a notable drop of 10% in its crime rates over the decade.',
+      'A notable drop of 10% was seen in crime rates in Australia.'
+    ],
+    answer: 2,
+    explanations: [
+      '❌ Sai. Đây là Cấu trúc 5 (Time [The 1990s] + witnessed …).',
+      '❌ Sai. Đây là Cấu trúc 1 (from … to … between …).',
+      '✅ Đúng! Subject (Australia) + saw + a notable drop of 10% IN its crime rates.',
+      '❌ Sai. Đây là Cấu trúc 3 (… was seen IN …).'
+    ]
+  }
+];
+
+// Fill in blank questions
+const fillQuestions = [
+  { struct: 1, sentence: 'The amount of water consumed ___ increased ___ 50 litres ___ 120 litres ___ 1990 ___ 2010.', blanks: ['significantly', 'from', 'to', 'between', 'and'], hint: 'S + ADV + V from … to … between … and …' },
+  { struct: 2, sentence: 'The figure for coal production dramatically declined ___ 8 million tonnes, ___ 3 million ___ 2015.', blanks: ['by', 'reaching', 'in'], hint: 'S + ADV + V by chênh lệch, reaching số cuối in năm' },
+  { struct: 3, sentence: '___ sharp rise ___ 40% ___ seen ___ the proportion of graduates, reaching 75% in 2018.', blanks: ['A', 'of', 'was', 'in'], hint: 'A/AN ADJ + N OF chênh lệch was seen IN + S' },
+  { struct: 4, sentence: '___ was a noticeable fall ___ 25 units ___ energy use per capita, reaching 50 units ___ 2012.', blanks: ['There', 'of', 'in', 'in'], hint: 'There was A/AN ADJ + N OF chênh lệch IN + S' },
+  { struct: 5, sentence: 'The period between 2001 and 2011 ___ a moderate growth ___ $500 million ___ foreign investment.', blanks: ['witnessed', 'of', 'in'], hint: 'Time + witnessed/saw + A/AN ADJ + N OF chênh lệch IN + S' },
+  { struct: 6, sentence: 'China ___ a remarkable surge ___ 200 million ___ its urban population over the given period.', blanks: ['witnessed', 'of', 'in'], hint: 'Subject + witnessed/saw + A/AN ADJ + N OF chênh lệch IN + Object' }
+];
+
+// Application data – 8 Vietnamese sentences, each with 6 rewrites
+const appData = [
+  {
+    vi: 'Chỉ số giá tiêu dùng đã tăng đều đặn từ khoảng 60 vào năm 1979 tới hơn 200 vào năm 2009.',
+    ways: [
+      { struct: 1, en: 'The Consumer Price Index <strong>steadily increased from</strong> 60 <strong>to</strong> over 200 <strong>between</strong> 1979 <strong>and</strong> 2009.', viTrans: 'Chỉ số giá tiêu dùng tăng đều đặn từ 60 lên hơn 200 trong giai đoạn 1979–2009.', analysis: 'S = The Consumer Price Index | V = increased | ADV = steadily', why: 'Nhấn mạnh điểm đầu (60) → điểm cuối (>200) + khoảng thời gian.' },
+      { struct: 2, en: 'The CPI <strong>steadily rose by</strong> approximately 140 points, <strong>reaching</strong> over 200 <strong>in</strong> 2009.', viTrans: 'CPI tăng đều khoảng 140 điểm, đạt hơn 200 vào 2009.', analysis: 'S = The CPI | V = rose | by = 140 points', why: 'Nhấn mạnh mức chênh lệch (~140) và kết quả đạt được.' },
+      { struct: 3, en: '<strong>A steady increase of</strong> approximately 140 points <strong>was seen in</strong> the CPI, <strong>reaching</strong> over 200 <strong>in</strong> 2009.', viTrans: 'Một sự tăng đều khoảng 140 điểm được ghi nhận ở CPI, đạt hơn 200 năm 2009.', analysis: 'N = increase | was seen IN = the CPI', why: 'Câu bị động – academic, formal.' },
+      { struct: 4, en: '<strong>There was a</strong> steady <strong>increase of</strong> approximately 140 points <strong>in</strong> the CPI, <strong>reaching</strong> over 200 <strong>in</strong> 2009.', viTrans: 'Có một sự tăng đều ~140 điểm ở CPI, đạt hơn 200 năm 2009.', analysis: 'There was + N (increase) + IN the CPI', why: 'Dạng phổ biến, dễ viết trong bài thi.' },
+      { struct: 5, en: '<strong>The 30-year period witnessed a</strong> steady <strong>increase of</strong> approximately 140 points <strong>in</strong> the CPI.', viTrans: 'Giai đoạn 30 năm chứng kiến sự tăng đều ~140 điểm ở CPI.', analysis: 'S = The 30-year period | V = witnessed | N = increase', why: 'Chủ ngữ là thời gian – tạo đa dạng.' },
+      { struct: 6, en: '<strong>The Consumer Price Index witnessed a</strong> steady <strong>rise of</strong> approximately 140 points <strong>in</strong> its value over the given period.', viTrans: 'CPI chứng kiến sự tăng đều ~140 điểm trong giá trị của nó.', analysis: 'S = The CPI | V = witnessed | O = its value', why: 'Đối tượng làm chủ ngữ – nổi bật chủ thể.' }
+    ]
+  },
+  {
+    vi: 'Giá hoa quả và rau củ nhìn chung giảm mạnh, đặc biệt sau năm 1989.',
+    ways: [
+      { struct: 1, en: 'The price of fruits and vegetables <strong>sharply decreased from</strong> the peak level <strong>to</strong> a much lower figure <strong>between</strong> 1989 <strong>and</strong> the end of the period.', viTrans: 'Giá hoa quả và rau giảm mạnh từ mức đỉnh xuống mức thấp hơn nhiều sau 1989.', analysis: 'S = The price of fruits and vegetables | V = decreased | ADV = sharply', why: 'Nhấn mạnh xu hướng giảm từ đỉnh → thấp.' },
+      { struct: 2, en: 'The price of fruits and vegetables <strong>dramatically fell by</strong> a considerable amount, <strong>reaching</strong> a low point <strong>in</strong> the final year.', viTrans: 'Giá giảm mạnh một lượng đáng kể, đạt mức thấp cuối kỳ.', analysis: 'S = The price | V = fell | by = a considerable amount', why: 'Nhấn mạnh mức giảm và kết quả cuối.' },
+      { struct: 3, en: '<strong>A sharp decline of</strong> a significant amount <strong>was seen in</strong> the price of fruits and vegetables after 1989.', viTrans: 'Sự giảm mạnh được ghi nhận ở giá hoa quả và rau sau 1989.', analysis: 'N = decline | was seen IN = the price', why: 'Bị động, formal.' },
+      { struct: 4, en: '<strong>There was a</strong> dramatic <strong>fall in</strong> the price of fruits and vegetables after 1989.', viTrans: 'Có một sự giảm mạnh ở giá hoa quả và rau sau 1989.', analysis: 'There was + N (fall) + IN', why: 'Dễ viết, phổ biến.' },
+      { struct: 5, en: '<strong>The period after 1989 witnessed a</strong> sharp <strong>decline in</strong> the price of fruits and vegetables.', viTrans: 'Giai đoạn sau 1989 chứng kiến sự sụt giảm mạnh giá hoa quả & rau.', analysis: 'S = The period after 1989 | V = witnessed', why: 'Thời gian làm chủ ngữ.' },
+      { struct: 6, en: '<strong>Fruits and vegetables witnessed a</strong> significant <strong>drop in</strong> their prices after 1989.', viTrans: 'Hoa quả và rau chứng kiến sự sụt giảm đáng kể trong giá.', analysis: 'S = Fruits and vegetables | V = witnessed | O = their prices', why: 'Đối tượng làm chủ ngữ.' }
+    ]
+  },
+  {
+    vi: 'Giai đoạn 1979–2004 chứng kiến mức tăng mạnh trong tiêu thụ thịt gà (khoảng 250g).',
+    ways: [
+      { struct: 1, en: 'Chicken consumption <strong>dramatically increased from</strong> a low level <strong>to</strong> approximately 250 grams <strong>between</strong> 1979 <strong>and</strong> 2004.', viTrans: 'Tiêu thụ thịt gà tăng mạnh từ mức thấp lên khoảng 250g, 1979–2004.', analysis: 'S = Chicken consumption | V = increased', why: 'Nhấn mạnh điểm đầu → cuối.' },
+      { struct: 2, en: 'Chicken consumption <strong>significantly rose by</strong> around 250 grams, <strong>reaching</strong> approximately 250g <strong>in</strong> 2004.', viTrans: 'Tiêu thụ gà tăng đáng kể ~250g, đạt khoảng 250g năm 2004.', analysis: 'S = Chicken consumption | V = rose | by ~250g', why: 'Nhấn chênh lệch và kết quả.' },
+      { struct: 3, en: '<strong>A dramatic increase of</strong> around 250 grams <strong>was seen in</strong> chicken consumption, <strong>reaching</strong> 250g <strong>in</strong> 2004.', viTrans: 'Sự tăng mạnh ~250g được ghi nhận ở tiêu thụ gà, đạt 250g năm 2004.', analysis: 'N = increase | was seen IN = chicken consumption', why: 'Bị động, academic.' },
+      { struct: 4, en: '<strong>There was a</strong> dramatic <strong>increase of</strong> around 250 grams <strong>in</strong> chicken consumption, <strong>reaching</strong> 250g <strong>in</strong> 2004.', viTrans: 'Có sự tăng mạnh ~250g ở tiêu thụ gà, đạt 250g năm 2004.', analysis: 'There was + increase + IN', why: 'Phổ biến, dễ dùng.' },
+      { struct: 5, en: '<strong>The 25-year period from 1979 to 2004 saw a</strong> sharp <strong>rise of</strong> approximately 250 grams <strong>in</strong> chicken consumption.', viTrans: '25 năm từ 1979–2004 chứng kiến sự tăng mạnh ~250g tiêu thụ gà.', analysis: 'S = The 25-year period | V = saw', why: 'Thời gian làm chủ ngữ.' },
+      { struct: 6, en: '<strong>Chicken witnessed a</strong> remarkable <strong>surge of</strong> around 250 grams <strong>in</strong> its consumption between 1979 and 2004.', viTrans: 'Gà chứng kiến sự tăng vọt ~250g trong tiêu thụ, 1979–2004.', analysis: 'S = Chicken | V = witnessed | O = its consumption', why: 'Đối tượng làm chủ ngữ.' }
+    ]
+  },
+  {
+    vi: 'Có sự tăng đều trong chi phí cho sách ở Pháp, đạt 75 triệu đô vào 2005.',
+    ways: [
+      { struct: 1, en: 'The cost of books in France <strong>gradually increased from</strong> a modest figure <strong>to</strong> 75 million <strong>between</strong> the initial year <strong>and</strong> 2005.', viTrans: 'Chi phí sách ở Pháp tăng dần từ mức khiêm tốn lên 75 triệu.', analysis: 'S = The cost of books in France | V = increased', why: 'Nhấn mạnh từ đầu → cuối.' },
+      { struct: 2, en: 'The expenditure on books in France <strong>steadily rose by</strong> a considerable amount, <strong>reaching</strong> 75 million <strong>in</strong> 2005.', viTrans: 'Chi tiêu cho sách tăng đều đặn, đạt 75 triệu năm 2005.', analysis: 'S = The expenditure | V = rose | reaching 75M', why: 'Nhấn mạnh mức đạt được cuối.' },
+      { struct: 3, en: '<strong>A gradual increase was seen in</strong> the cost of books in France, <strong>reaching</strong> 75 million <strong>in</strong> 2005.', viTrans: 'Sự tăng dần được ghi nhận ở chi phí sách Pháp, đạt 75 triệu năm 2005.', analysis: 'N = increase | was seen IN = the cost', why: 'Bị động, formal.' },
+      { struct: 4, en: '<strong>There was a</strong> steady <strong>rise in</strong> the cost of books in France, <strong>reaching</strong> 75 million <strong>in</strong> 2005.', viTrans: 'Có sự tăng đều ở chi phí sách Pháp, đạt 75 triệu năm 2005.', analysis: 'There was + rise + IN', why: 'Dễ viết, phổ biến.' },
+      { struct: 5, en: '<strong>The given period witnessed a</strong> steady <strong>rise in</strong> the cost of books in France, which peaked at 75 million.', viTrans: 'Giai đoạn này chứng kiến sự tăng đều chi phí sách Pháp, đỉnh 75 triệu.', analysis: 'S = The given period | V = witnessed', why: 'Thời gian làm chủ ngữ.' },
+      { struct: 6, en: '<strong>France witnessed a</strong> gradual <strong>increase in</strong> the cost of books, which reached 75 million <strong>in</strong> 2005.', viTrans: 'Pháp chứng kiến sự tăng dần chi phí sách, đạt 75 triệu năm 2005.', analysis: 'S = France | V = witnessed | O = the cost of books', why: 'Quốc gia làm chủ ngữ.' }
+    ]
+  },
+  {
+    vi: 'Có sự giảm nhẹ trong thời gian sản xuất của Toyota và Honda (20 tiếng/xe vào 2005).',
+    ways: [
+      { struct: 1, en: 'The production time for Toyota and Honda <strong>slightly decreased from</strong> a higher level <strong>to</strong> 20 hours <strong>between</strong> the starting year <strong>and</strong> 2005.', viTrans: 'Thời gian sản xuất Toyota & Honda giảm nhẹ xuống 20 giờ.', analysis: 'S = The production time | V = decreased', why: 'Nhấn điểm đầu → cuối.' },
+      { struct: 2, en: 'The manufacturing hours for Toyota and Honda <strong>marginally declined by</strong> a small amount, <strong>reaching</strong> 20 hours <strong>in</strong> 2005.', viTrans: 'Số giờ sản xuất giảm nhẹ, đạt 20 giờ năm 2005.', analysis: 'S = The manufacturing hours | V = declined', why: 'Nhấn chênh lệch nhỏ.' },
+      { struct: 3, en: '<strong>A slight decrease was seen in</strong> the production time for Toyota and Honda, <strong>reaching</strong> 20 hours <strong>in</strong> 2005.', viTrans: 'Sự giảm nhẹ được ghi nhận ở thời gian sản xuất, đạt 20h năm 2005.', analysis: 'N = decrease | was seen IN', why: 'Bị động, academic.' },
+      { struct: 4, en: '<strong>There was a</strong> marginal <strong>decline in</strong> the production time for Toyota and Honda, <strong>reaching</strong> 20 hours <strong>in</strong> 2005.', viTrans: 'Có sự giảm nhẹ ở thời gian sản xuất, đạt 20h năm 2005.', analysis: 'There was + decline + IN', why: 'Phổ biến, dễ dùng.' },
+      { struct: 5, en: '<strong>The period up to 2005 witnessed a</strong> slight <strong>fall in</strong> the production time for both Toyota and Honda.', viTrans: 'Giai đoạn đến 2005 chứng kiến sự giảm nhẹ thời gian sản xuất.', analysis: 'S = The period | V = witnessed', why: 'Thời gian làm chủ ngữ.' },
+      { struct: 6, en: '<strong>Toyota and Honda witnessed a</strong> marginal <strong>reduction in</strong> their production time, which dropped to 20 hours <strong>in</strong> 2005.', viTrans: 'Toyota & Honda chứng kiến sự giảm nhẹ thời gian sản xuất, xuống 20h.', analysis: 'S = Toyota and Honda | V = witnessed | O = production time', why: 'Đối tượng làm chủ ngữ.' }
+    ]
+  },
+  {
+    vi: 'Tỉ lệ sinh nhìn chung giảm ở phụ nữ trên 35 tuổi.',
+    ways: [
+      { struct: 1, en: 'The birth rate among women over 35 <strong>noticeably decreased from</strong> a higher level <strong>to</strong> a lower figure <strong>between</strong> the start <strong>and</strong> end of the period.', viTrans: 'Tỉ lệ sinh ở phụ nữ >35 tuổi giảm rõ rệt trong giai đoạn.', analysis: 'S = The birth rate | V = decreased', why: 'Nhấn xu hướng giảm theo thời gian.' },
+      { struct: 2, en: 'The birth rate for women aged over 35 <strong>considerably dropped by</strong> a notable percentage, <strong>reaching</strong> a low level <strong>in</strong> the final year.', viTrans: 'Tỉ lệ sinh giảm đáng kể, đạt mức thấp cuối kỳ.', analysis: 'S = The birth rate | V = dropped | by %', why: 'Nhấn chênh lệch và kết quả.' },
+      { struct: 3, en: '<strong>A noticeable decline was seen in</strong> the birth rate among women over 35 over the given period.', viTrans: 'Sự giảm rõ rệt được ghi nhận ở tỉ lệ sinh phụ nữ >35.', analysis: 'N = decline | was seen IN = the birth rate', why: 'Bị động, formal.' },
+      { struct: 4, en: '<strong>There was a</strong> considerable <strong>fall in</strong> the birth rate for women aged over 35 throughout the period.', viTrans: 'Có sự sụt giảm đáng kể ở tỉ lệ sinh phụ nữ >35.', analysis: 'There was + fall + IN', why: 'Phổ biến.' },
+      { struct: 5, en: '<strong>The given period saw a</strong> notable <strong>decrease in</strong> the birth rate among women over 35.', viTrans: 'Giai đoạn này chứng kiến sự giảm rõ rệt tỉ lệ sinh phụ nữ >35.', analysis: 'S = The given period | V = saw', why: 'Thời gian làm chủ ngữ.' },
+      { struct: 6, en: '<strong>Women over 35 witnessed a</strong> significant <strong>decline in</strong> their birth rates over the period.', viTrans: 'Phụ nữ >35 chứng kiến sự sụt giảm đáng kể tỉ lệ sinh.', analysis: 'S = Women over 35 | V = witnessed | O = birth rates', why: 'Đối tượng làm chủ ngữ.' }
+    ]
+  },
+  {
+    vi: 'Sản lượng dầu tăng từ 8 triệu thùng/ngày năm 1990 lên hơn 14 triệu vào 2010.',
+    ways: [
+      { struct: 1, en: 'Oil production <strong>significantly increased from</strong> 8 million barrels <strong>to</strong> over 14 million <strong>between</strong> 1990 <strong>and</strong> 2010.', viTrans: 'Sản lượng dầu tăng mạnh từ 8 triệu lên hơn 14 triệu, 1990–2010.', analysis: 'S = Oil production | V = increased', why: 'Nhấn điểm đầu → cuối + khoảng thời gian.' },
+      { struct: 2, en: 'Oil output <strong>substantially grew by</strong> over 6 million barrels, <strong>reaching</strong> more than 14 million <strong>in</strong> 2010.', viTrans: 'Sản lượng dầu tăng đáng kể hơn 6 triệu, đạt >14 triệu năm 2010.', analysis: 'S = Oil output | V = grew | by >6M', why: 'Nhấn chênh lệch.' },
+      { struct: 3, en: '<strong>A substantial increase of</strong> over 6 million barrels <strong>was seen in</strong> oil production, <strong>reaching</strong> more than 14 million <strong>in</strong> 2010.', viTrans: 'Sự tăng đáng kể >6 triệu thùng được ghi nhận ở sản lượng dầu.', analysis: 'N = increase | was seen IN = oil production', why: 'Bị động, academic.' },
+      { struct: 4, en: '<strong>There was a</strong> significant <strong>rise of</strong> over 6 million barrels <strong>in</strong> oil production, <strong>reaching</strong> more than 14 million <strong>in</strong> 2010.', viTrans: 'Có sự tăng mạnh >6 triệu thùng ở sản lượng dầu, đạt >14 triệu.', analysis: 'There was + rise + IN', why: 'Dễ viết.' },
+      { struct: 5, en: '<strong>The two decades from 1990 to 2010 witnessed a</strong> remarkable <strong>rise of</strong> over 6 million barrels <strong>in</strong> oil production.', viTrans: 'Hai thập kỷ 1990–2010 chứng kiến sự tăng đáng kể >6 triệu thùng.', analysis: 'S = The two decades | V = witnessed', why: 'Thời gian làm chủ ngữ.' },
+      { struct: 6, en: '<strong>The oil industry witnessed a</strong> significant <strong>growth of</strong> over 6 million barrels <strong>in</strong> output between 1990 and 2010.', viTrans: 'Ngành dầu chứng kiến sự tăng trưởng >6 triệu thùng sản lượng.', analysis: 'S = The oil industry | V = witnessed | O = output', why: 'Ngành công nghiệp làm chủ ngữ.' }
+    ]
+  },
+  {
+    vi: 'Số liệu Mỹ và Anh dao động nhưng luôn thấp hơn Ý và Bồ Đào Nha.',
+    ways: [
+      { struct: 1, en: 'The figures for the US and the UK <strong>fluctuated from</strong> lower levels <strong>to</strong> slightly higher ones <strong>between</strong> the start <strong>and</strong> end of the period, remaining below those of Italy and Portugal.', viTrans: 'Số liệu Mỹ & Anh dao động ở mức thấp, dưới Ý & Bồ Đào Nha.', analysis: 'S = The figures | V = fluctuated', why: 'Mô tả xu hướng dao động.' },
+      { struct: 2, en: 'The US and UK figures <strong>fluctuated by</strong> small margins throughout the period, <strong>reaching</strong> levels consistently below those of Italy and Portugal.', viTrans: 'Số liệu Mỹ & Anh dao động biên nhỏ, luôn thấp hơn Ý & BĐN.', analysis: 'S = The US and UK figures | V = fluctuated | by small margins', why: 'Nhấn mạnh biên dao động nhỏ.' },
+      { struct: 3, en: '<strong>Minor fluctuations were seen in</strong> the figures for the US and the UK, which remained lower than those of Italy and Portugal.', viTrans: 'Dao động nhỏ được ghi nhận ở Mỹ & Anh, thấp hơn Ý & BĐN.', analysis: 'N = fluctuations | were seen IN = the figures', why: 'Bị động, academic.' },
+      { struct: 4, en: '<strong>There were</strong> minor <strong>fluctuations in</strong> the data for the US and the UK, which stayed below Italy and Portugal\'s figures.', viTrans: 'Có sự dao động nhỏ ở Mỹ & Anh, thấp hơn Ý & BĐN.', analysis: 'There were + fluctuations + IN', why: 'Phổ biến, dễ viết.' },
+      { struct: 5, en: '<strong>The entire period saw</strong> minor <strong>fluctuations in</strong> the figures for the US and the UK, which were consistently lower than those of Italy and Portugal.', viTrans: 'Toàn giai đoạn chứng kiến sự dao động nhỏ ở Mỹ & Anh.', analysis: 'S = The entire period | V = saw', why: 'Thời gian làm chủ ngữ.' },
+      { struct: 6, en: '<strong>The US and the UK witnessed</strong> minor <strong>fluctuations in</strong> their figures, which remained below those of Italy and Portugal.', viTrans: 'Mỹ & Anh chứng kiến dao động nhỏ, thấp hơn Ý & BĐN.', analysis: 'S = The US and the UK | V = witnessed | O = their figures', why: 'Quốc gia làm chủ ngữ.' }
+    ]
+  }
+];
+
+// ===================== STATE =====================
+let score = 0;
+let mcAnswered = new Array(6).fill(false);
+let fillChecked = false;
+
+// Sound files must be placed in the same folder as this HTML file.
+const correctSound = new Audio('correct.mp3');
+const wrongSound = new Audio('wrong.mp3');
+correctSound.preload = 'auto';
+wrongSound.preload = 'auto';
+let userInteracted = false;
+
+const defaultConfig = {
+  main_title: '🔥 WRITING TASK 1A – DATA',
+  primary_color: '#fb923c',
+  surface_color: '#0f172a',
+  text_color: '#e2e8f0',
+  accent_color: '#1e293b',
+  secondary_action_color: '#334155',
+  font_family: 'Be Vietnam Pro',
+  font_size: 14
+};
+
+// ===================== INIT =====================
+function allowAudioPlayback() {
+  userInteracted = true;
+  if (window.audioContext && window.audioContext.state === 'suspended') {
+    window.audioContext.resume().catch(() => {});
+  }
+}
+
+function playFallbackTone(type, ctx, now) {
+  const osc = ctx.createOscillator();
+  const gain = ctx.createGain();
+  osc.connect(gain);
+  gain.connect(ctx.destination);
+
+  if (type === 'correct') {
+    osc.frequency.setValueAtTime(523.25, now);
+    osc.frequency.setValueAtTime(659.25, now + 0.1);
+    osc.frequency.setValueAtTime(783.99, now + 0.2);
+    gain.gain.setValueAtTime(0.3, now);
+    gain.gain.setValueAtTime(0, now + 0.3);
+  } else {
+    osc.frequency.setValueAtTime(200, now);
+    gain.gain.setValueAtTime(0.2, now);
+    gain.gain.setValueAtTime(0, now + 0.2);
+  }
+
+  osc.start(now);
+  osc.stop(now + 0.3);
+}
+
+if (window.elementSdk && typeof window.elementSdk.init === 'function') {
+  window.elementSdk.init({
+    defaultConfig,
+    onConfigChange: async (config) => {
+      const c = { ...defaultConfig, ...config };
+      document.getElementById('mainTitle').textContent = c.main_title;
+      document.body.style.fontFamily = `${c.font_family}, Be Vietnam Pro, sans-serif`;
+      document.body.style.fontSize = c.font_size + 'px';
+      document.body.style.backgroundColor = c.surface_color;
+      document.body.style.color = c.text_color;
+      document.querySelectorAll('.text-orange-400').forEach(el => el.style.color = c.primary_color);
+    },
+    mapToCapabilities: (config) => {
+      const c = { ...defaultConfig, ...config };
+      return {
+        recolorables: [
+          { get: () => c.surface_color, set: v => { c.surface_color = v; window.elementSdk.setConfig({ surface_color: v }); } },
+          { get: () => c.accent_color, set: v => { c.accent_color = v; window.elementSdk.setConfig({ accent_color: v }); } },
+          { get: () => c.text_color, set: v => { c.text_color = v; window.elementSdk.setConfig({ text_color: v }); } },
+          { get: () => c.primary_color, set: v => { c.primary_color = v; window.elementSdk.setConfig({ primary_color: v }); } },
+          { get: () => c.secondary_action_color, set: v => { c.secondary_action_color = v; window.elementSdk.setConfig({ secondary_action_color: v }); } }
+        ],
+        borderables: [],
+        fontEditable: { get: () => c.font_family, set: v => { c.font_family = v; window.elementSdk.setConfig({ font_family: v }); } },
+        fontSizeable: { get: () => c.font_size, set: v => { c.font_size = v; window.elementSdk.setConfig({ font_size: v }); } }
+      };
+    },
+    mapToEditPanelValues: (config) => {
+      const c = { ...defaultConfig, ...config };
+      return new Map([['main_title', c.main_title]]);
+    }
+  });
+} else {
+  console.warn('elementSdk not available. Skipping interactive config integration.');
+}
+
+// ===================== RENDER =====================
+function switchTab(tab) {
+  document.querySelectorAll('.tab-section').forEach(s => s.classList.remove('visible'));
+  document.getElementById('tab-' + tab).classList.add('visible', 'fade-in');
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  document.querySelector(`[data-tab="${tab}"]`).classList.add('active');
+}
+
+function updateScore(pts) {
+  score += pts;
+  document.getElementById('totalScore').textContent = score;
+}
+
+// Render structure cards
+function renderStructures() {
+  const c = document.getElementById('structureCards');
+  c.innerHTML = structures.map(s => `
+    <div class="bg-slate-800/60 rounded-xl p-4 border border-slate-700/50">
+      <div class="flex items-center gap-2 mb-2">
+        <span class="struct-tag ${s.cls}">${s.label}</span>
+      </div>
+      <p class="font-mono text-sm text-orange-300 mb-2">${s.formula}</p>
+      <p class="text-sm text-slate-300 mb-2">📌 ${s.example}</p>
+      <p class="text-xs text-slate-500 italic">💡 ${s.note}</p>
+    </div>
+  `).join('');
+}
+
+// Render MC
+function renderMC() {
+  const c = document.getElementById('mcContainer');
+  mcAnswered = new Array(6).fill(false);
+  document.getElementById('mcResult').classList.add('hidden');
+  c.innerHTML = mcQuestions.map((q, qi) => `
+    <div class="bg-slate-900 rounded-2xl p-5 border border-slate-800" id="mc-${qi}">
+      <div class="flex items-center gap-2 mb-3">
+        <span class="struct-tag s${q.struct}">CẤU TRÚC ${q.struct}</span>
+        <span class="text-sm font-semibold text-slate-300">Câu ${qi + 1}/6</span>
+      </div>
+      <p class="text-sm text-slate-200 mb-4">${q.question}</p>
+      <div class="space-y-2">
+        ${q.options.map((o, oi) => `
+          <div class="quiz-opt bg-slate-800 border border-slate-700 rounded-xl px-4 py-3 text-sm text-slate-300" onclick="answerMC(${qi}, ${oi})" id="mc-${qi}-${oi}">
+            <span class="font-bold text-slate-500 mr-2">${'ABCD'[oi]}.</span> ${o}
+          </div>
+        `).join('')}
+      </div>
+      <div id="mc-exp-${qi}" class="mt-3 hidden text-sm bg-slate-800/50 rounded-xl p-3"></div>
+    </div>
+  `).join('');
+}
+
+function answerMC(qi, oi) {
+  if (mcAnswered[qi]) return;
+  mcAnswered[qi] = true;
+  const q = mcQuestions[qi];
+  // Lock all options
+  for (let i = 0; i < 4; i++) {
+    const el = document.getElementById(`mc-${qi}-${i}`);
+    el.classList.add('locked');
+    if (i === q.answer) el.classList.add('correct');
+    if (i === oi && i !== q.answer) el.classList.add('wrong');
+  }
+  // Show explanation
+  const exp = document.getElementById(`mc-exp-${qi}`);
+  exp.classList.remove('hidden');
+  const isCorrect = oi === q.answer;
+  if (isCorrect) updateScore(10);
+  exp.innerHTML = `<p class="font-semibold ${isCorrect ? 'text-emerald-400' : 'text-red-400'} mb-2">${isCorrect ? '🎉 Chính xác!' : '❌ Sai rồi!'}</p>` +
+    q.explanations.map(e => `<p class="text-slate-400 text-xs mb-1">${e}</p>`).join('');
+
+  // Check if all answered
+  if (mcAnswered.every(Boolean)) {
+    const correct = mcAnswered.filter((_, i) => {
+      const el = document.getElementById(`mc-${i}-${mcQuestions[i].answer}`);
+      return el && el.classList.contains('correct') && !document.querySelector(`#mc-${i} .wrong`);
+    }).length;
+    // Count correctly by checking if wrong was selected
+    let count = 0;
+    for (let i = 0; i < 6; i++) {
+      const wrongEl = document.querySelector(`#mc-${i} .quiz-opt.wrong`);
+      if (!wrongEl) count++;
+    }
+    const r = document.getElementById('mcResult');
+    r.classList.remove('hidden');
+    document.getElementById('mcScore').textContent = `${count}/6 câu đúng`;
+    document.getElementById('mcMsg').textContent = count === 6 ? '🏆 Xuất sắc! Bạn nắm vững 6 cấu trúc!' : count >= 4 ? '👍 Khá tốt! Xem lại cấu trúc sai nhé.' : '💪 Cần ôn thêm – hãy đọc lại lý thuyết!';
+  }
+}
+
+function resetMC() {
+  score = Math.max(0, score - mcAnswered.filter(Boolean).length * 10 + mcAnswered.filter((_, i) => !document.querySelector(`#mc-${i} .quiz-opt.wrong`)).length * 10);
+  // Simple: just reset score contribution and re-render
+  score = 0;
+  document.getElementById('totalScore').textContent = score;
+  renderMC();
+  lucide.createIcons();
+}
+
+// Render Fill
+function renderFill() {
+  const c = document.getElementById('fillContainer');
+  fillChecked = false;
+  document.getElementById('fillResult').classList.add('hidden');
+  c.innerHTML = fillQuestions.map((q, qi) => {
+    let blankIdx = 0;
+    const parts = q.sentence.split('___');
+    let html = '';
+    for (let i = 0; i < parts.length; i++) {
+      html += `<span>${parts[i]}</span>`;
+      if (i < parts.length - 1) {
+        html += `<input type="text" class="blank-input" id="fill-${qi}-${blankIdx}" data-answer="${q.blanks[blankIdx]}" style="width:${Math.max(60, q.blanks[blankIdx].length * 10)}px">`;
+        blankIdx++;
+      }
+    }
+    return `
+      <div class="bg-slate-900 rounded-2xl p-5 border border-slate-800">
+        <div class="flex items-center gap-2 mb-2">
+          <span class="struct-tag s${q.struct}">CẤU TRÚC ${q.struct}</span>
+          <span class="text-sm font-semibold text-slate-300">Câu ${qi + 1}/6</span>
+        </div>
+        <p class="text-xs text-slate-500 mb-3 italic">💡 ${q.hint}</p>
+        <p class="text-sm text-slate-200 leading-8">${html}</p>
+        <div id="fill-exp-${qi}" class="mt-2 hidden"></div>
+      </div>`;
+  }).join('');
+}
+
+function checkAllFill() {
+  if (fillChecked) return;
+  fillChecked = true;
+  let correct = 0;
+  let total = 0;
+  fillQuestions.forEach((q, qi) => {
+    q.blanks.forEach((ans, bi) => {
+      total++;
+      const inp = document.getElementById(`fill-${qi}-${bi}`);
+      const val = inp.value.trim().toLowerCase();
+      if (val === ans.toLowerCase()) {
+        inp.classList.add('correct-input');
+        correct++;
+      } else {
+        inp.classList.add('wrong-input');
+        // Show correct answer
+        const hint = document.createElement('span');
+        hint.className = 'text-xs text-emerald-400 ml-1';
+        hint.textContent = `(${ans})`;
+        inp.parentNode.insertBefore(hint, inp.nextSibling);
+      }
+      inp.disabled = true;
+    });
+  });
+  const pts = correct * 5;
+  updateScore(pts);
+  const r = document.getElementById('fillResult');
+  r.classList.remove('hidden');
+  document.getElementById('fillScore').textContent = `${correct}/${total} ô đúng`;
+  document.getElementById('fillMsg').textContent = correct === total ? '🏆 Hoàn hảo! Bạn nhớ rất tốt!' : correct >= total * 0.7 ? '👍 Tốt lắm! Xem lại vài chỗ sai.' : '💪 Ôn lại 6 cấu trúc ở phần Lý thuyết nhé!';
+}
+
+function resetFill() {
+  score = 0;
+  document.getElementById('totalScore').textContent = score;
+  fillChecked = false;
+  renderFill();
+  lucide.createIcons();
+}
+
+// Render Application - Rewrite Game
+function renderRewrite() {
+  const c = document.getElementById('rewriteContainer');
+  c.innerHTML = appData.map((item, idx) => `
+    <div class="rewrite-card bg-slate-900 rounded-2xl border border-slate-800 overflow-hidden">
+      <div class="bg-slate-800/50 px-5 py-4 border-b border-slate-700">
+        <p class="text-sm font-semibold text-slate-200 mb-1">📌 Câu ${idx + 1}/8</p>
+        <p class="text-base font-bold text-orange-300">${item.vi}</p>
+      </div>
+      <div class="p-5">
+        <div class="space-y-4">
+          ${[0,1,2,3,4,5].map(si => `
+            <div class="bg-slate-800/40 rounded-xl p-4 border border-slate-700/50">
+              <div class="flex items-center gap-2 mb-3">
+                <span class="struct-tag s${si+1}">CẤU TRÚC ${si+1}</span>
+                <span class="text-xs text-slate-500">${structures[si].formula.substring(0, 40)}...</span>
+              </div>
+              <textarea class="w-full bg-slate-900 text-slate-200 border border-slate-600 rounded-lg p-3 text-sm resize-none rewrite-textarea focus:border-orange-400 focus:ring-1 focus:ring-orange-400/30" 
+                rows="2" placeholder="Viết câu của bạn ở đây..." id="rewrite-${idx}-${si}" data-item="${idx}" data-struct="${si}"></textarea>
+              <button onclick="checkRewrite(${idx}, ${si})" class="mt-2 w-full bg-orange-500 hover:bg-orange-600 text-white font-semibold px-3 py-2 rounded-lg text-sm transition">Kiểm tra</button>
+              <div id="rewrite-result-${idx}-${si}" class="mt-2 hidden"></div>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function checkRewrite(itemIdx, structIdx) {
+  const userAnswer = document.getElementById(`rewrite-${itemIdx}-${structIdx}`).value.trim().toLowerCase();
+  const modelAnswers = appData[itemIdx].ways[structIdx];
+  const resultDiv = document.getElementById(`rewrite-result-${itemIdx}-${structIdx}`);
+
+  if (!userAnswer) {
+    resultDiv.innerHTML = '<p class="text-xs text-red-400">⚠️ Hãy viết câu trước!</p>';
+    resultDiv.classList.remove('hidden');
+    return;
+  }
+
+  // Simple keyword matching for evaluation
+  const keywords = ['from', 'to', 'between', 'and', 'by', 'reaching', 'was', 'seen', 'there', 'witnessed', 'saw'];
+  const modelLower = modelAnswers.en.toLowerCase();
+  
+  // Check if user's answer contains key structural elements
+  let structureScore = 0;
+  const requiredKeywords = getKeywordsForStructure(structIdx);
+  let keywordsFound = 0;
+  
+  requiredKeywords.forEach(kw => {
+    if (userAnswer.includes(kw.toLowerCase())) keywordsFound++;
+  });
+  
+  const structureMatch = keywordsFound >= requiredKeywords.length - 1; // Allow 1 mistake
+  
+  if (structureMatch) {
+    playSound('correct');
+    createFireworks(document.getElementById(`rewrite-${itemIdx}-${structIdx}`));
+    if (typeof confetti === 'function') {
+      confetti({ particleCount: 80, spread: 70, origin: { y: 0.6 } });
+    }
+    resultDiv.innerHTML = `
+      <div class="bg-emerald-950/40 border border-emerald-700/50 rounded-lg p-4 space-y-3">
+        <p class="text-sm font-bold text-emerald-400">🎉 Xuất sắc! Cấu trúc đúng!</p>
+        <div>
+          <p class="text-xs text-slate-400 mb-1">✅ Đáp án mẫu:</p>
+          <p class="text-sm text-emerald-300 font-semibold">${modelAnswers.en}</p>
+        </div>
+        <div>
+          <p class="text-xs text-slate-400 mb-1">🌐 Dịch:</p>
+          <p class="text-sm text-slate-300">${modelAnswers.viTrans}</p>
+        </div>
+        <div class="bg-slate-800/50 rounded-lg p-3 space-y-2">
+          <p class="text-xs font-bold text-sky-400">📐 Phân tích:</p>
+          <div class="text-xs text-slate-300 space-y-1">
+            <p><strong>S (Chủ ngữ):</strong> ${modelAnswers.analysis.split(' | ')[0]}</p>
+            <p><strong>V (Động từ):</strong> ${modelAnswers.analysis.split(' | ')[1] || 'N/A'}</p>
+            <p><strong>ADV/Cấu trúc:</strong> ${modelAnswers.analysis.split(' | ')[2] || 'N/A'}</p>
+          </div>
+        </div>
+        <div class="bg-amber-950/30 rounded-lg p-3">
+          <p class="text-xs font-bold text-amber-400 mb-1">💡 Giải thích chuyên sâu:</p>
+          <p class="text-xs text-slate-300">${modelAnswers.why}</p>
+        </div>
+        <div class="bg-blue-950/30 rounded-lg p-3">
+          <p class="text-xs font-bold text-blue-400 mb-2">🔵 Cấu trúc áp dụng:</p>
+          <p class="font-mono text-xs text-blue-300 mb-1">${structures[structIdx].formula}</p>
+          <p class="text-xs text-slate-400">Highlight: <span class="text-orange-300 font-semibold">${getStructureHighlight(structIdx)}</span></p>
+        </div>
+      </div>
+    `;
+    updateScore(15);
+    document.getElementById(`rewrite-${itemIdx}-${structIdx}`).disabled = true;
+  } else {
+    playSound('wrong');
+    resultDiv.innerHTML = `
+      <div class="bg-red-950/40 border border-red-700/50 rounded-lg p-4 space-y-2">
+        <p class="text-sm font-bold text-red-400">❌ Cần kiểm tra lại cấu trúc!</p>
+        <p class="text-xs text-slate-400">Thiếu từ khóa: <span class="text-orange-300 font-semibold">${requiredKeywords.filter(kw => !userAnswer.includes(kw.toLowerCase())).join(', ')}</span></p>
+        <p class="text-xs text-slate-300 mt-2">💡 Gợi ý: ${getStructureHint(structIdx)}</p>
+        <button onclick="revealAnswer(${itemIdx}, ${structIdx})" class="mt-2 text-xs bg-slate-700 hover:bg-slate-600 text-slate-200 px-2 py-1 rounded transition">Xem đáp án</button>
+      </div>
+    `;
+  }
+  
+  resultDiv.classList.remove('hidden');
+}
+
+function revealAnswer(itemIdx, structIdx) {
+  const modelAnswers = appData[itemIdx].ways[structIdx];
+  const resultDiv = document.getElementById(`rewrite-result-${itemIdx}-${structIdx}`);
+  
+  resultDiv.innerHTML = `
+    <div class="bg-slate-800/60 border border-slate-600 rounded-lg p-4 space-y-3">
+      <p class="text-xs font-bold text-orange-400">📖 ĐÁP ÁN CHI TIẾT:</p>
+      <div>
+        <p class="text-xs text-slate-400 mb-1">🇬🇧 English:</p>
+        <p class="text-sm text-slate-200 font-semibold">${modelAnswers.en}</p>
+      </div>
+      <div>
+        <p class="text-xs text-slate-400 mb-1">🇻🇳 Vietnamese:</p>
+        <p class="text-sm text-slate-300">${modelAnswers.viTrans}</p>
+      </div>
+      <div class="bg-sky-950/30 rounded-lg p-3 space-y-2">
+        <p class="text-xs font-bold text-sky-400">📐 Phân tích chi tiết:</p>
+        <div class="text-xs text-slate-300 space-y-1">
+          <p><strong>S (Chủ ngữ):</strong> ${modelAnswers.analysis.split(' | ')[0]}</p>
+          <p><strong>V (Động từ):</strong> ${modelAnswers.analysis.split(' | ')[1] || 'N/A'}</p>
+          <p><strong>ADV/Cấu trúc:</strong> ${modelAnswers.analysis.split(' | ')[2] || 'N/A'}</p>
+        </div>
+      </div>
+      <div class="bg-amber-950/30 rounded-lg p-3">
+        <p class="text-xs font-bold text-amber-400 mb-1">💡 Vì sao viết như vậy:</p>
+        <p class="text-xs text-slate-300">${modelAnswers.why}</p>
+      </div>
+      <div class="bg-purple-950/30 rounded-lg p-3">
+        <p class="text-xs font-bold text-purple-400 mb-2">🔵 Cấu trúc:</p>
+        <p class="font-mono text-xs text-purple-300">${structures[structIdx].formula}</p>
+      </div>
+    </div>
+  `;
+}
+
+function getKeywordsForStructure(idx) {
+  const keywordMap = [
+    ['from', 'to', 'between', 'and'],
+    ['by', 'reaching', 'in'],
+    ['was', 'seen', 'in'],
+    ['there', 'was', 'in'],
+    ['witnessed', 'saw', 'in'],
+    ['witnessed', 'saw', 'in']
+  ];
+  return keywordMap[idx] || [];
+}
+
+function getStructureHint(idx) {
+  const hints = [
+    'Dùng: S + adv + V from [số] to [số] between [năm] and [năm]',
+    'Dùng: S + adv + V by [chênh lệch], reaching [số] in [năm]',
+    'Dùng: A/An [tính từ] + noun of [chênh lệch] was seen in [S]',
+    'Dùng: There was a/an [tính từ] + noun of [chênh lệch] in [S]',
+    'Dùng: Time + witnessed/saw + a/an [tính từ] + noun',
+    'Dùng: Subject + witnessed/saw + a/an [tính từ] + noun'
+  ];
+  return hints[idx] || '';
+}
+
+function getStructureHighlight(idx) {
+  const highlights = [
+    'from ... to ... between ... and ...',
+    'by [chênh lệch], reaching [số] in [năm]',
+    'was seen in',
+    'There was ... in',
+    'witnessed/saw ... in',
+    'witnessed/saw ... in'
+  ];
+  return highlights[idx] || '';
+}
+
+function playSound(type) {
+  if (!userInteracted) allowAudioPlayback();
+  if (!window.audioContext) {
+    window.audioContext = new (window.AudioContext || window.webkitAudioContext)();
+  }
+  const ctx = window.audioContext;
+  if (ctx.state === 'suspended') {
+    ctx.resume().catch(() => {});
+  }
+  const now = ctx.currentTime;
+
+  const soundFile = type === 'correct' ? correctSound : wrongSound;
+  if (soundFile && soundFile.src) {
+    soundFile.currentTime = 0;
+    soundFile.play().catch(() => {
+      playFallbackTone(type, ctx, now);
+    });
+    return;
+  }
+
+  playFallbackTone(type, ctx, now);
+}
+
+function createFireworks(element) {
+  const rect = element.getBoundingClientRect();
+  const x = rect.left + rect.width / 2;
+  const y = rect.top + rect.height / 2;
+  
+  const burst = document.createElement('div');
+  burst.className = 'fireworks-burst';
+  burst.style.left = x + 'px';
+  burst.style.top = y + 'px';
+  document.body.appendChild(burst);
+  
+  const colors = ['#fb923c', '#fbbf24', '#34d399', '#60a5fa', '#a78bfa'];
+  for (let i = 0; i < 20; i++) {
+    const particle = document.createElement('div');
+    particle.className = 'fireworks-particle';
+    particle.style.background = colors[Math.floor(Math.random() * colors.length)];
+    const angle = (Math.PI * 2 * i) / 20;
+    const velocity = 4 + Math.random() * 4;
+    particle.style.setProperty('--tx', Math.cos(angle) * velocity * 30 + 'px');
+    particle.style.setProperty('--ty', Math.sin(angle) * velocity * 30 + 'px');
+    burst.appendChild(particle);
+  }
+  
+  setTimeout(() => burst.remove(), 800);
+}
+
+function resetRewrite() {
+  document.querySelectorAll('[id^="rewrite-"]').forEach(el => {
+    if (el.tagName === 'TEXTAREA') {
+      el.value = '';
+      el.disabled = false;
+    }
+  });
+  document.querySelectorAll('[id^="rewrite-result-"]').forEach(el => el.classList.add('hidden'));
+  score = 0;
+  document.getElementById('totalScore').textContent = score;
+}
+
+// Render Application
+function renderApply() {
+  renderRewrite();
+
+  // Summary
+  const sum = document.getElementById('summaryStructures');
+  sum.innerHTML = structures.map(s => `
+    <div class="flex items-start gap-2">
+      <span class="struct-tag ${s.cls} shrink-0 mt-0.5">${s.id}</span>
+      <span class="font-mono text-xs text-slate-300">${s.formula}</span>
+    </div>
+  `).join('');
+}
+
+// Init all after DOM is ready
+function initApp() {
+  renderStructures();
+  renderMC();
+  renderFill();
+  renderApply();
+  lucide.createIcons();
+
+  document.addEventListener('click', allowAudioPlayback, { once: true, capture: true });
+
+  const fillCheckBtn = document.getElementById('fillCheckBtn');
+  if (fillCheckBtn) {
+    fillCheckBtn.addEventListener('click', checkAllFill);
+  }
+}
+
+document.addEventListener('DOMContentLoaded', initApp);
+</script>
+</body>
+</html>
